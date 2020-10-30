@@ -32,7 +32,7 @@ public class Response extends BasePage {
 	@FindBy(css = "#contact-email")
 	WebElement email;
     
-	@FindBy(css = "//LABEL[@class='checkbox-text clearfix'][text()='Post']")
+	@FindBy(xpath = "//label[contains(text(),'Post')]")
 	WebElement post;
 	
 	@FindBy(xpath = "//*[contains(text(), 'I would like to share my experience with others to improve awareness and outcomes.')]\n")
@@ -55,17 +55,17 @@ public class Response extends BasePage {
 	    
 	    public void firstName() {
 			wait.forElementToBeVisible(firstName);
-	    	sendKeys(firstName, "aviraj");
+	    	sendKeys(firstName, "Roshan");
 	    }
 	    public void lastname() {
 			wait.forElementToBeVisible(lastname);
-	    	sendKeys(lastname, "abc");
+	    	sendKeys(lastname, "Singh");
 	    }
 
 		
-	    public void email() {
+	    public void email(String username1) {
 			wait.forElementToBeVisible(email);
-	    	sendKeys(email, "pavirajuv@gmail.com");
+	    	sendKeys(email, username1);
 	    }
 	    
 	    public void post() {

@@ -10,7 +10,6 @@ import commons.BasePage;
 
 public class Feel extends BasePage {
 
-
 	 public Feel(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub

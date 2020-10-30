@@ -83,8 +83,12 @@ public class Scenario3Test extends TestBase {
 		response.title();
 		response.firstName();
 		response.lastname();
-		response.email();
+		response.email(property.getProperty("username1"));
+		response.post();
+		response.option2();
+		response.option3();
 		response.doneChoosing();
+
 
 	}
 

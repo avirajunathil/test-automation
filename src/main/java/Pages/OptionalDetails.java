@@ -69,7 +69,7 @@ public class OptionalDetails extends BasePage {
 			robot.keyRelease(KeyEvent.VK_ENTER);
 
 
-			if(driver.findElement(By.xpath("//SPAN[@class='file-name'][text()='simples.PNG']")).isDisplayed())
+			if(driver.findElement(By.xpath("//SPAN[@class='file-name'][text()='simple.PNG']")).isDisplayed())
 			{
 				Assert.assertTrue(true, "Profile picture is Uploaded");
 			}
