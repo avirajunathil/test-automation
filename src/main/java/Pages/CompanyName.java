@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 
 import commons.BasePage;
 
+import java.util.List;
+
 public class CompanyName extends BasePage {
 
 
@@ -20,23 +22,31 @@ public class CompanyName extends BasePage {
 	@FindBy(xpath = "(//INPUT[@type='text'])[1]")
     WebElement company;
 	
+	@FindBy(xpath = "//div[@class='form-group single-org ']")
+	WebElement energyCompanyOption;
+
+	@FindBy(xpath = "//a[contains(text(),'Perth Energy')]")
+	WebElement companyNameSelect;
+
 	@FindBy(xpath = "//BUTTON[@class='btn btn-pagenav btn-block organisation-button']")
 	WebElement doneChoosing;
-	
-	@FindBy(xpath = "//a[contains(text(),'Perth Energy')]")
-	WebElement click;
+
 	    private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
 	    public void company() {
 			wait.forElementToBeVisible(company);
-	    	sendKeys(company, "Perth");
+	    	sendKeys(company, "Perth Energy");
 	    }
-	 	public void click() {
-			wait.forElementToBeVisible(click);
-	    	click(click);
-	 }
+	 	public void clickOnEnergyCompanyOption() {
+			wait.forElementToBeVisible(energyCompanyOption);
+	    	click(energyCompanyOption);
+	 	}
 
-		
+		public void companyName() {
+		wait.forElementToBeVisible(companyNameSelect);
+		click(companyNameSelect);
+		}
+
 		public void doneChoosing() {
 			wait.forElementToBeVisible(doneChoosing);
 	    	click(doneChoosing);
