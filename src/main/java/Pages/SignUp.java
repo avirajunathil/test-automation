@@ -51,7 +51,7 @@ public class SignUp extends BasePage {
 	    
 		 public void firstName() {
 			wait.forElementToBeVisible(firstName);
-			sendKeys(firstName, "aviraj");
+			sendKeys(firstName, "TestUser");
 		    }
 		    
 	    public void lastName() {
@@ -62,12 +62,12 @@ public class SignUp extends BasePage {
 	    public void password() {
 	    	wait.forPage();
 			wait.forElementToBeVisible(password);
-	    	sendKeys(password, "aviraj123");
+	    	sendKeys(password, "TestUser");
 	    }
 	    
 	    public void newPassword() {
 			wait.forElementToBeVisible(newPassword);
-	    	sendKeys(newPassword, "aviraj123");
+	    	sendKeys(newPassword, "TestUser");
 	    }
 
 	    public void checkbox() {
