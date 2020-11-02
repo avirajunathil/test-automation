@@ -21,9 +21,6 @@ public class SubmitNewComplaint extends BasePage {
 	@FindBy(xpath = "//I[@class='fa fa-lightbulb-o']")
 	WebElement energyComplaint;
 
-//	@FindBy(css = "div.layout:nth-child(2) div.page div.container-fluid div.row:nth-child(2) div.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4.mar-top-10 form.list-form div.check-list:nth-child(3) div.radio > label.checkbox-text.clearfix.radio-label")
-//    WebElement billAccount;
-
 	@FindBy(xpath = "//LABEL[@for='Paying a bill'][text()='Paying a bill']")
 	WebElement payingBill;
 
