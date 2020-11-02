@@ -35,7 +35,7 @@ public class Location extends BasePage {
 	@FindBy(css = "#country")
 	WebElement country;
 
-	@FindBy(xpath = "#submit-btn")
+	@FindBy(css = "#submit-btn")
 	WebElement submit;
 
 	private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
