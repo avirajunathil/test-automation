@@ -16,7 +16,7 @@ public class SignUp extends BasePage {
 		super(driver);
 		// TODO Auto-generated constructor stub
 	}
-	@FindBy(xpath = "//input[@id='register-title']")
+		@FindBy(xpath = "//input[@id='register-title']")
 	    WebElement title;
 	    
 	    @FindBy(xpath = "//input[@id='register-givenname']")

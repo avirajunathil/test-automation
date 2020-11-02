@@ -25,9 +25,12 @@ public class PageFeeling extends BasePage {
 		public void disappointed() {
 	    	wait.forElementToBeVisible(disappointed);
 	    	click(disappointed);
+			lOGGER.info("clicked on Disappointed button");
 			wait.forElementToBeVisible(doneChoosing);
 			click(doneChoosing);
-	    }
+			lOGGER.info("clicked on done choosing");
+
+		}
 
 
 		

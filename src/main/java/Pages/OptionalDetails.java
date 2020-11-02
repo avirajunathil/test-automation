@@ -20,65 +20,48 @@ import org.testng.Assert;
 
 public class OptionalDetails extends BasePage {
 
-	@FindBy(css = "#outcome-field1")
-	WebElement resolution;
-
-	@FindBy(css = "#other-outcome1")
-	WebElement outcome1;
-	@FindBy(xpath = "//span[contains(text(),'CHOOSE FILE')]")
+	@FindBy(xpath = "//span[@class='btn btn-default btn-file']")
 	WebElement chooseFile;
 
+
 	@FindBy(css = "#btn-next")
-	static
 	WebElement doneChoosing;
 
 	// Optional details
 	@FindBy(xpath = "//select[@id='impact-field']")
-	static WebElement dropDown_EffectOfIssue;
+	 WebElement dropDown_EffectOfIssue;
 
 	@FindBy(xpath = "//select[@class='form-control' and @name='outcome1']")
-	static WebElement dropDown_ResolutionIWant;
+	 WebElement dropDown_ResolutionIWant;
 
 	@FindBy(xpath = "//select[@id='outcome-field2']")
-	static WebElement dropDown_2ndPriority;
+	 WebElement dropDown_2ndPriority;
 
 	@FindBy(xpath = "//select[@id='outcome-field3']")
-	static WebElement dropDown_3rdPriority;
+	 WebElement dropDown_3rdPriority;
 
 	@FindBy(xpath = "//select[@id='contactattempts-field']")
-	static WebElement dropDown_ContactAttempt;
+	 WebElement dropDown_ContactAttempt;
 
 	@FindBy(xpath = "//select[@id='experience-field2']")
-	static WebElement dropDown_YourExperience;
+	 WebElement dropDown_YourExperience;
 
 	@FindBy(xpath = "//input[@id='referencenumber-field']")
-	static WebElement Textbox_AddRefrence;
+	 WebElement Textbox_AddRefrence;
 
 	@FindBy(xpath = "//input[@id='accountnumber-field']")
-	static WebElement Textbox_AccountNumber;
+	 WebElement Textbox_AccountNumber;
 
 	@FindBy(xpath = "//textarea[@id='comments-field']")
-	static WebElement Textbox_DescriptionBox;
+	 WebElement Textbox_DescriptionBox;
 
 	@FindBy(xpath = "//button[@id='btn-next']")
-	static WebElement optionalDetails_SubmitButton;
+	 WebElement optionalDetails_SubmitButton;
 
 	private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
 	public OptionalDetails(WebDriver driver) {
 		super(driver);
-	}
-
-	public void resolution() {
-		wait.forElementToBeVisible(resolution);
-		Select ab = new Select(resolution);
-		ab.selectByValue("10");
-
-	}
-
-	public void outcome1() {
-		wait.forElementToBeVisible(outcome1);
-		sendKeys(outcome1, "payment plan");
 	}
 
 	public void chooseFile() throws AWTException {
@@ -98,7 +81,7 @@ public class OptionalDetails extends BasePage {
 		robot.keyRelease(KeyEvent.VK_V);
 		robot.setAutoDelay(1000);
 		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER)	;
 
 		if (driver.findElement(By.xpath("//SPAN[@class='file-name'][text()='simple.PNG']")).isDisplayed()) {
 			Assert.assertTrue(true, "Profile picture is Uploaded");
@@ -107,12 +90,12 @@ public class OptionalDetails extends BasePage {
 		}
 	}
 
-	public static void doneChoosing() {
+	public void doneChoosing() {
 		wait.forElementToBeVisible(doneChoosing);
 		click(doneChoosing);
 	}
 
-	public static void EffectofIssue(String value) {
+	public void EffectofIssue(String value) {
 
 		wait.forElementToBeVisible(dropDown_EffectOfIssue);
 		dropDownMethod(dropDown_EffectOfIssue, "VisibleText", value);
@@ -120,7 +103,7 @@ public class OptionalDetails extends BasePage {
 
 	}
 
-	public static void ResolutionIWant(String value) {
+	public void ResolutionIWant(String value) {
 
 		wait.forElementToBeVisible(dropDown_ResolutionIWant);
 		dropDownMethod(dropDown_ResolutionIWant, "VisibleText", value);
@@ -128,7 +111,7 @@ public class OptionalDetails extends BasePage {
 
 	}
 
-	public static void SecondPriority(String value) {
+	public void SecondPriority(String value) {
 
 		wait.forElementToBeVisible(dropDown_2ndPriority);
 		dropDownMethod(dropDown_2ndPriority, "VisibleText", value);
@@ -137,7 +120,7 @@ public class OptionalDetails extends BasePage {
 
 	}
 
-	public static void ThirdPriority(String value) {
+	public void ThirdPriority(String value) {
 
 		wait.forElementToBeVisible(dropDown_3rdPriority);
 		dropDownMethod(dropDown_3rdPriority, "VisibleText", value);
@@ -145,7 +128,7 @@ public class OptionalDetails extends BasePage {
 
 	}
 
-	public static void NumberOfContactAtempts(String value) {
+	public void NumberOfContactAtempts(String value) {
 
 		wait.forElementToBeVisible(dropDown_ContactAttempt);
 		dropDownMethod(dropDown_ContactAttempt, "VisibleText", value);
@@ -153,7 +136,7 @@ public class OptionalDetails extends BasePage {
 
 	}
 
-	public static void YourExperience(String value) {
+	public void YourExperience(String value) {
 
 		wait.forElementToBeVisible(dropDown_YourExperience);
 		dropDownMethod(dropDown_YourExperience, "VisibleText", value);
@@ -162,7 +145,7 @@ public class OptionalDetails extends BasePage {
 
 	}
 
-	public static void AddRefrenceNo(String text) {
+	public void AddRefrenceNo(String text) {
 
 		wait.forElementToBeVisible(Textbox_AddRefrence);
 		sendKeys(Textbox_AddRefrence , text);
@@ -171,7 +154,7 @@ public class OptionalDetails extends BasePage {
 
 	}
 
-	public static void AddAccountNo(String text) {
+	public void AddAccountNo(String text) {
 
 		wait.forElementToBeVisible(Textbox_AccountNumber);
 		sendKeys(Textbox_AccountNumber , text);
@@ -179,7 +162,7 @@ public class OptionalDetails extends BasePage {
 
 	}
 
-	public static void CommentSection(String text) {
+	public void CommentSection(String text) {
 
 		wait.forElementToBeVisible(Textbox_DescriptionBox);
 		sendKeys(Textbox_DescriptionBox , text);
@@ -188,8 +171,7 @@ public class OptionalDetails extends BasePage {
 	}
 
 
-	public static void enterOptionDetails()
-	{
+	public void enterOptionDetails() throws AWTException {
 		EffectofIssue("Caused stress / anxiety");
 		ResolutionIWant("Amount owed reduced");
 		SecondPriority("Manager involvement");
@@ -198,6 +180,7 @@ public class OptionalDetails extends BasePage {
 		YourExperience("Rude staff");
 		AddRefrenceNo("X789");
 		AddAccountNo("521678");
+		chooseFile();
 		CommentSection("One staff member, Ellie, was rude.");
 		doneChoosing();
 

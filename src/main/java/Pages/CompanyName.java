@@ -14,51 +14,40 @@ import java.util.List;
 public class CompanyName extends BasePage {
 
 
-	 public CompanyName(WebDriver driver) {
+	public CompanyName(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
 	}
-  
+
 	@FindBy(xpath = "(//INPUT[@type='text'])[1]")
-    WebElement company;
-	
+	WebElement company;
+
+
 	@FindBy(xpath = "//div[@class='form-group single-org ']")
 	WebElement energyCompanyOption;
 
-	@FindBy(xpath="//ul[@class='dropdown-menumylistolist-0']//*[@class='ui-menu-itemlisting']//*[@class='ui-all']")
+	@FindBy(xpath = "//a[@class='ui-all']")
 	WebElement companyNameSelect;
 
 	@FindBy(xpath = "//BUTTON[@class='btn btn-pagenav btn-block organisation-button']")
 	WebElement doneChoosing;
 
-	    private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
+	private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
-	public void enterCompanyDetails() {
-		wait.forElementToBeVisible(company);
-		sendKeys(company, "Energy");
-		wait.forElementToBeVisible(companyNameSelect);
-		click(companyNameSelect);
-		wait.forElementToBeVisible(doneChoosing);
-		click(doneChoosing);
-	}
-
-	public void company() {
+	public void enterCompanyDetails()
+	{
 		wait.forElementToBeVisible(company);
 		sendKeys(company, "Perth Energy");
-	}
-
-	public void clickOnEnergyCompanyOption() {
+		lOGGER.info("clicked on Company Name");
 		wait.forElementToBeVisible(energyCompanyOption);
 		click(energyCompanyOption);
-	}
-
-	public void companyName() {
+		lOGGER.info("clicked on Company Name");
 		wait.forElementToBeVisible(companyNameSelect);
 		click(companyNameSelect);
-	}
-
-	public void doneChoosing() {
+		lOGGER.info("clicked on Company Name");
 		wait.forElementToBeVisible(doneChoosing);
 		click(doneChoosing);
+		lOGGER.info("clicked on Company Name");
+
 	}
 }

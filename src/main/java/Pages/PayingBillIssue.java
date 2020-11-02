@@ -27,9 +27,13 @@ public class PayingBillIssue extends BasePage {
 		public void payingBill() {
 			wait.forElementToBeVisible(payingBill);
 	    	click(payingBill);
+			lOGGER.info("clicked on bill pay option");
+
 		}
 		public void doneChoosing() {
 			wait.forElementToBeVisible(doneChoosing);
 	    	click(doneChoosing);
-	    }
+			lOGGER.info("clicked on done choosing");
+
+		}
 }

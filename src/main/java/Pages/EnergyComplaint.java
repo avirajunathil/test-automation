@@ -27,8 +27,10 @@ public class EnergyComplaint extends BasePage {
 		public void energyComplaint() {
 			wait.forElementToBeVisible(energyComplaint);
 	    	click(energyComplaint);
+			lOGGER.info("Clicked on Energy Complaint");
 
 
-	    }
+
+		}
 		
 }

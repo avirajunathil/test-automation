@@ -53,12 +53,11 @@ public class Scenario3Test extends TestBase {
 
 
 		OptionalDetails optionalDetails = new OptionalDetails(driver);
-		optionalDetails.resolution();
-		optionalDetails.chooseFile();
+		optionalDetails.enterOptionDetails();
 
 		Response response = new Response(driver);
 		response.inputResponse();
-		response.email(property.getProperty("username1"));
+		//response.email(property.getProperty("username1"));
 
 	}
 

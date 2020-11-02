@@ -42,11 +42,11 @@ public class Location extends BasePage {
 
 	public void inputDetailForAddress() {
 
-		address1("67 View St");
-		address2("Woollahra");
-		city("Sydney");
-		state("NSW");
-		postcode("2025");
+		address1("24/23 zonara street");
+		address2("varikuzhi lodge");
+		city("burrywood");
+		state("WA");
+		postcode("6100");
 		country("1");
 		submit();
 	}
@@ -99,7 +99,5 @@ public class Location extends BasePage {
 		click(submit);
 		lOGGER.info("clicking on the Submit button");
 	}
-
-
 
 }

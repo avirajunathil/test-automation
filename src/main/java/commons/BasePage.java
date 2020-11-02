@@ -1,8 +1,10 @@
 package commons;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public abstract class BasePage {
@@ -29,6 +31,8 @@ public abstract class BasePage {
         js.clickElement(webElement);
     }
 
+
+
     public static void sendKeys(WebElement webElement, String value, int timeOutInSeconds) {
         click(webElement, timeOutInSeconds);
         webElement.clear();
@@ -46,21 +50,82 @@ public abstract class BasePage {
     public void executeJavascript(String string, WebElement element) {
         js.executeScript(string, element);
     }
-
     public static void dropDownMethod(WebElement element, String option, String value)
     {
+
         Select s = new Select(element);
-        if(option.equalsIgnoreCase("Value")){
+        if (option.equalsIgnoreCase("Value")) {
             s.selectByValue(value);
         }
 
-        else if(option.equalsIgnoreCase("VisibleText")){
-            s.selectByVisibleText(value);}
+        else if (option.equalsIgnoreCase("VisibleText")) {
+            s.selectByVisibleText(value);
+        }
 
-            else if(option.equalsIgnoreCase("Index")){
-                int i = Integer.parseInt(value);
-                s.selectByIndex(i);
-            }
+        else if (option.equalsIgnoreCase("Index")) {
+            int i = Integer.parseInt(value);
+            s.selectByIndex(i);
+        }
     }
+    /* This method will validate partial text */
+    public static boolean getTextPartialValidate(WebElement element,String value)
+    {
+        boolean flag=false;
+        System.out.println("Extracted text is:"+element.getText());
+        if(element.getText().contains(value))
+        {
+            System.out.println("Partial Text comparsion is successful");
+            flag=true;
+        }
+        else
+        {
+            System.out.println("Partial Text comparsion is unsuccessful");
+        }
+        return flag;
 
+    }
+    /* This is wrapper method to check the web element is displayed on the page*/
+    public boolean isElementPresence(WebElement webElement) {
+        return webElement.isEnabled();
+    }
+    /* This method will clear the Text */
+    public void clearText(WebElement element) {
+        element.clear();
+    }
+    /* This method will scroll the web page till bottom of the page */
+    public static void scrollToBottom()
+    {
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+    }
+    /* This method will scroll the web page till top of the web page */
+    public static void scrollToTop()
+    {
+
+        js.executeScript("window.scrollTo(0,0)");
+
+    }
+    /* This is wrapper method to check the web element is displayed on the page */
+    public boolean isElementDisplayed(WebElement webElement) {
+        return webElement.isDisplayed();
+    }
+    /* This method will scroll the web page Vertically till the element is found */
+    public static void scrollToElementView(WebElement element)
+    {
+        js.executeScript("arguments[0].scrollIntoView();", element);
+
+    }
+    /* This method will enter value in the input textbox */
+    public static void javaScriptSendValue(WebElement element,String val)
+    {
+        js.executeScript("arguments[0].value='"+val+"';", element);
+
+    }
+    /* This method will click on the web element using javascriptexecutor */
+    public static void javaScriptClick(WebElement element)
+    {
+        js.executeScript("arguments[0].click();", element);
+
+    }
 }

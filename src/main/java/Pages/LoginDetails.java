@@ -28,17 +28,23 @@ public class LoginDetails extends BasePage{
 		public void getUsername(String username1) {
 			wait.forElementToBeVisible(username);
 	    	sendKeys(username, username1);
-	    }
+			lOGGER.info("User name entered");
+
+		}
 	    
 	    public void getPassword(String password1) {
 			wait.forElementToBeVisible(password);
 	    	sendKeys(password, password1);
-	    }
+			lOGGER.info("Password entered");
+
+		}
 	    public void onClick() {
 			wait.forElementToBeVisible(Click);
 	    	click(Click);
-	    	
-	    }
+			lOGGER.info("clicked on done button of login page");
+
+
+		}
 	    
 	
 }
