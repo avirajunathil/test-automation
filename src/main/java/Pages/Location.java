@@ -35,52 +35,69 @@ public class Location extends BasePage {
 	@FindBy(css = "#country")
 	WebElement country;
 
-	@FindBy(xpath = "//button[@id='submit-btn']")
+	@FindBy(xpath = "#submit-btn")
 	WebElement submit;
 
 	private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
-	public void address1Details() {
-		address1details("24/23 zonara street");
-		address2details("varikuzhi lodge");
-		cityDetails("burrywood");
-		stateSelect("8");
-		postalcode("6100");
-		stateCountry("1");
+	public void inputDetailForAddress() {
+
+		address1("67 View St");
+		address2("Woollahra");
+		city("Sydney");
+		state("NSW");
+		postcode("2025");
+		country("1");
+		submit();
 	}
 
-
-	public void address1details( String text) {
-		wait.forElementToBeVisible(address2);
-		sendKeys(address2, text);
-	}
-	public void address2details( String text) {
+	public void address1(String value)
+	{
 		wait.forElementToBeVisible(address1);
-		sendKeys(address1, text);
+		sendKeys(address1, value);
+		lOGGER.info("Entering input into the Adress1 input field");
 	}
-	public void cityDetails( String text) {
+
+	public void address2(String value) {
+		wait.forElementToBeVisible(address2);
+		sendKeys(address2, value);
+		lOGGER.info("Entering input into the Adress2 input field");
+	}
+
+	public void city(String value) {
 		wait.forElementToBeVisible(city);
-		sendKeys(city, text);
+		sendKeys(city, value);
+		lOGGER.info("Entering input into the Town/City input field");
 	}
 
-	public void stateSelect(String value){
+	public void state(String value) {
 		wait.forElementToBeVisible(state);
-		dropDownMethod(state, "Index", value );
+		click(state);
+		dropDownMethod(state, "VisibleText", value);
+		lOGGER.info("Selecting values from State dropdown field");
+
 
 	}
-	public void postalcode( String postalcode) {
+
+	public void postcode(String value) {
 		wait.forElementToBeVisible(postcode);
-		sendKeys(postcode, postalcode);
+		sendKeys(postcode, value);
+		lOGGER.info("Entering input into the Postcode input field");
 	}
-	public void stateCountry(String value){
+
+	public void country(String value) {
+
 		wait.forElementToBeVisible(country);
-		dropDownMethod(country, "Index", value );
+		click(country);
+		dropDownMethod(country, "Value", value);
+		lOGGER.info("Selecting values from country dropdown field");
 
 	}
 
-	public void doneChoosing(){
+	public void submit() {
 		wait.forElementToBeVisible(submit);
 		click(submit);
+		lOGGER.info("clicking on the Submit button");
 	}
 
 

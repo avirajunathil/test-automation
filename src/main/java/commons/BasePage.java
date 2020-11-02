@@ -20,7 +20,7 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void click(WebElement webElement) {
+    public static void click(WebElement webElement) {
         click(webElement, Timeouts.EXPLICIT);
     }
 
@@ -35,7 +35,7 @@ public abstract class BasePage {
         webElement.sendKeys(value);
     }
 
-    public void sendKeys(WebElement webElement, String value) {
+    public static void sendKeys(WebElement webElement, String value) {
         sendKeys(webElement, value, Timeouts.EXPLICIT);
     }
 

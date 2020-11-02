@@ -46,19 +46,18 @@ public class Scenario3Test extends TestBase {
 		feel.disappointed();
 
 		Location location = new Location(driver);
-		location.address1Details();
-		location.doneChoosing();
+		location.inputDetailForAddress();
 
 		CompanyName companyName = new CompanyName(driver);
-		companyName.company();
-		companyName.companyDetailsNeeded();
+		companyName.enterCompanyDetails();
+
 
 		OptionalDetails optionalDetails = new OptionalDetails(driver);
 		optionalDetails.resolution();
 		optionalDetails.chooseFile();
 
 		Response response = new Response(driver);
-		response.title();
+		response.inputResponse();
 		response.email(property.getProperty("username1"));
 
 	}

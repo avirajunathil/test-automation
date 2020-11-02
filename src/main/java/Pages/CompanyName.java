@@ -33,22 +33,32 @@ public class CompanyName extends BasePage {
 
 	    private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
-	public void company() {
-		companyDetails("Perth Energy");
+	public void enterCompanyDetails() {
+		wait.forElementToBeVisible(company);
+		sendKeys(company, "Energy");
+		wait.forElementToBeVisible(companyNameSelect);
+		click(companyNameSelect);
+		wait.forElementToBeVisible(doneChoosing);
+		click(doneChoosing);
 	}
-	    public void companyDetails( String text) {
-			wait.forElementToBeVisible(company);
-	    	sendKeys(company, text);
 
-	    }
+	public void company() {
+		wait.forElementToBeVisible(company);
+		sendKeys(company, "Perth Energy");
+	}
 
-	    public void companyDetailsNeeded(){
-			wait.forElementToBeVisible(energyCompanyOption);
-			click(energyCompanyOption);
-			wait.forElementToBeVisible(companyNameSelect);
-			click(companyNameSelect);
-			wait.forElementToBeVisible(doneChoosing);
-			click(doneChoosing);
-		}
+	public void clickOnEnergyCompanyOption() {
+		wait.forElementToBeVisible(energyCompanyOption);
+		click(energyCompanyOption);
+	}
 
+	public void companyName() {
+		wait.forElementToBeVisible(companyNameSelect);
+		click(companyNameSelect);
+	}
+
+	public void doneChoosing() {
+		wait.forElementToBeVisible(doneChoosing);
+		click(doneChoosing);
+	}
 }

@@ -1,13 +1,14 @@
 
 package Pages;
 
-import java.awt.AWTException;
-import java.awt.Robot;
+import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,58 +16,190 @@ import org.openqa.selenium.support.ui.Select;
 
 
 import commons.BasePage;
+import org.testng.Assert;
 
 public class OptionalDetails extends BasePage {
-
-
-	public OptionalDetails(WebDriver driver) {
-		super(driver);
-		// TODO Auto-generated constructor stub
-	}
 
 	@FindBy(css = "#outcome-field1")
 	WebElement resolution;
 
 	@FindBy(css = "#other-outcome1")
 	WebElement outcome1;
-	@FindBy(css = "div.layout:nth-child(2) div.page div.container-fluid div.row:nth-child(3) div.col-md-12:nth-child(4) div.document-attachments div.form-group:nth-child(3) div:nth-child(4) label:nth-child(1) > span.btn.btn-default.btn-file")
+	@FindBy(xpath = "//span[contains(text(),'CHOOSE FILE')]")
 	WebElement chooseFile;
 
 	@FindBy(css = "#btn-next")
+	static
 	WebElement doneChoosing;
+
+	// Optional details
+	@FindBy(xpath = "//select[@id='impact-field']")
+	static WebElement dropDown_EffectOfIssue;
+
+	@FindBy(xpath = "//select[@class='form-control' and @name='outcome1']")
+	static WebElement dropDown_ResolutionIWant;
+
+	@FindBy(xpath = "//select[@id='outcome-field2']")
+	static WebElement dropDown_2ndPriority;
+
+	@FindBy(xpath = "//select[@id='outcome-field3']")
+	static WebElement dropDown_3rdPriority;
+
+	@FindBy(xpath = "//select[@id='contactattempts-field']")
+	static WebElement dropDown_ContactAttempt;
+
+	@FindBy(xpath = "//select[@id='experience-field2']")
+	static WebElement dropDown_YourExperience;
+
+	@FindBy(xpath = "//input[@id='referencenumber-field']")
+	static WebElement Textbox_AddRefrence;
+
+	@FindBy(xpath = "//input[@id='accountnumber-field']")
+	static WebElement Textbox_AccountNumber;
+
+	@FindBy(xpath = "//textarea[@id='comments-field']")
+	static WebElement Textbox_DescriptionBox;
+
+	@FindBy(xpath = "//button[@id='btn-next']")
+	static WebElement optionalDetails_SubmitButton;
 
 	private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
+	public OptionalDetails(WebDriver driver) {
+		super(driver);
+	}
+
 	public void resolution() {
-		wait.forPage();
+		wait.forElementToBeVisible(resolution);
 		Select ab = new Select(resolution);
 		ab.selectByValue("10");
-		wait.forPage();
-		sendKeys(outcome1, "payment plan");
-		wait.forPage();
-		click(doneChoosing);
 
 	}
+
+	public void outcome1() {
+		wait.forElementToBeVisible(outcome1);
+		sendKeys(outcome1, "payment plan");
+	}
+
 	public void chooseFile() throws AWTException {
-		wait.forPage();
+		wait.forElementToBeVisible(chooseFile);
 		click(chooseFile);
+		String projectpath = System.getProperty("user.dir") + File.separator + "simple.PNG";
+
 		Robot robot = new Robot();
-		robot.setAutoDelay(2000);
-		StringSelection sc = new StringSelection("C:\\Users\\u39807\\Desktop\\aaaaaaaaaaa.PNG");
-		java.awt.Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sc, null);
-		robot.setAutoDelay(2000);
+		robot.delay(2000);
+		StringSelection stringSelection = new StringSelection(projectpath);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+		robot.setAutoDelay(1000);
 		robot.keyPress(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_V);
-		robot.setAutoDelay(2000);
-
+		robot.setAutoDelay(1000);
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
-		robot.setAutoDelay(5000);
+
+		if (driver.findElement(By.xpath("//SPAN[@class='file-name'][text()='simple.PNG']")).isDisplayed()) {
+			Assert.assertTrue(true, "Profile picture is Uploaded");
+		} else {
+			Assert.assertTrue(false, "Profile picture not Uploaded");
+		}
+	}
+
+	public static void doneChoosing() {
+		wait.forElementToBeVisible(doneChoosing);
+		click(doneChoosing);
+	}
+
+	public static void EffectofIssue(String value) {
+
+		wait.forElementToBeVisible(dropDown_EffectOfIssue);
+		dropDownMethod(dropDown_EffectOfIssue, "VisibleText", value);
+		lOGGER.info("Selecting values from What's the Effect of Issue dropdown field");
+
+	}
+
+	public static void ResolutionIWant(String value) {
+
+		wait.forElementToBeVisible(dropDown_ResolutionIWant);
+		dropDownMethod(dropDown_ResolutionIWant, "VisibleText", value);
+		lOGGER.info("Selecting values from resoltion i most want  dropdown field\"");
+
+	}
+
+	public static void SecondPriority(String value) {
+
+		wait.forElementToBeVisible(dropDown_2ndPriority);
+		dropDownMethod(dropDown_2ndPriority, "VisibleText", value);
+		lOGGER.info("Selecting values from Second Priority dropdown field");
+
+
+	}
+
+	public static void ThirdPriority(String value) {
+
+		wait.forElementToBeVisible(dropDown_3rdPriority);
+		dropDownMethod(dropDown_3rdPriority, "VisibleText", value);
+		lOGGER.info("Selecting values from Third dropdown field");
+
+	}
+
+	public static void NumberOfContactAtempts(String value) {
+
+		wait.forElementToBeVisible(dropDown_ContactAttempt);
+		dropDownMethod(dropDown_ContactAttempt, "VisibleText", value);
+		lOGGER.info("Selecting values from Number of contacts attempt dropdown field");
+
+	}
+
+	public static void YourExperience(String value) {
+
+		wait.forElementToBeVisible(dropDown_YourExperience);
+		dropDownMethod(dropDown_YourExperience, "VisibleText", value);
+		lOGGER.info("Selecting values from your experience with staff dropdown field");
+
+
+	}
+
+	public static void AddRefrenceNo(String text) {
+
+		wait.forElementToBeVisible(Textbox_AddRefrence);
+		sendKeys(Textbox_AddRefrence , text);
+		lOGGER.info("Entering input into the Add refrence number input field");
+
+
+	}
+
+	public static void AddAccountNo(String text) {
+
+		wait.forElementToBeVisible(Textbox_AccountNumber);
+		sendKeys(Textbox_AccountNumber , text);
+		lOGGER.info("Entering input into the Add Account Number input field");
+
+	}
+
+	public static void CommentSection(String text) {
+
+		wait.forElementToBeVisible(Textbox_DescriptionBox);
+		sendKeys(Textbox_DescriptionBox , text);
+		lOGGER.info("Entering input into the Add Account Number input field");
 
 	}
 
 
+	public static void enterOptionDetails()
+	{
+		EffectofIssue("Caused stress / anxiety");
+		ResolutionIWant("Amount owed reduced");
+		SecondPriority("Manager involvement");
+		ThirdPriority("Apology");
+		NumberOfContactAtempts("Twice");
+		YourExperience("Rude staff");
+		AddRefrenceNo("X789");
+		AddAccountNo("521678");
+		CommentSection("One staff member, Ellie, was rude.");
+		doneChoosing();
 
+	}
 }
