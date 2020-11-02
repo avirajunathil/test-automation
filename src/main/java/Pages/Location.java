@@ -35,48 +35,54 @@ public class Location extends BasePage {
 	@FindBy(css = "#country")
 	WebElement country;
 
-	@FindBy(css = "#submit-btn")
+	@FindBy(xpath = "//button[@id='submit-btn']")
 	WebElement submit;
 
 	private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
-	public void address1() {
-		wait.forElementToBeVisible(address1);
-		sendKeys(address1, "24/23 zonara street");
+	public void address1Details() {
+		address1details("24/23 zonara street");
+		address2details("varikuzhi lodge");
+		cityDetails("burrywood");
+		stateSelect("8");
+		postalcode("6100");
+		stateCountry("1");
 	}
 
-	public void address2() {
+
+	public void address1details( String text) {
 		wait.forElementToBeVisible(address2);
-		sendKeys(address2, "varikuzhi lodge");
+		sendKeys(address2, text);
 	}
-
-	public void city() {
+	public void address2details( String text) {
+		wait.forElementToBeVisible(address1);
+		sendKeys(address1, text);
+	}
+	public void cityDetails( String text) {
 		wait.forElementToBeVisible(city);
-		sendKeys(city, "burrywood");
+		sendKeys(city, text);
 	}
 
-	public void state() {
+	public void stateSelect(String value){
 		wait.forElementToBeVisible(state);
-		click(state);
-		Select ab = new Select(state);
-		ab.selectByValue("8");
+		dropDownMethod(state, "Index", value );
 
 	}
-
-	public void postcode() {
+	public void postalcode( String postalcode) {
 		wait.forElementToBeVisible(postcode);
-		sendKeys(postcode, "6100");
+		sendKeys(postcode, postalcode);
 	}
-
-	public void country() {
+	public void stateCountry(String value){
 		wait.forElementToBeVisible(country);
-		Select ab = new Select(country);
-		ab.selectByValue("1");
+		dropDownMethod(country, "Index", value );
 
 	}
 
-	public void submit() {
+	public void doneChoosing(){
 		wait.forElementToBeVisible(submit);
 		click(submit);
 	}
+
+
+
 }

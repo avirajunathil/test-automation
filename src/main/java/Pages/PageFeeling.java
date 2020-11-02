@@ -8,9 +8,9 @@ import org.openqa.selenium.support.FindBy;
 
 import commons.BasePage;
 
-public class Feel extends BasePage {
+public class PageFeeling extends BasePage {
 
-	 public Feel(WebDriver driver) {
+	 public PageFeeling(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
 	}
@@ -25,11 +25,10 @@ public class Feel extends BasePage {
 		public void disappointed() {
 	    	wait.forElementToBeVisible(disappointed);
 	    	click(disappointed);
-	    }
-
-		public void doneChoosing() {
 			wait.forElementToBeVisible(doneChoosing);
 			click(doneChoosing);
 	    }
+
+
 		
 }

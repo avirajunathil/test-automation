@@ -27,29 +27,32 @@ public class SubmitNewComplaint extends BasePage {
 	@FindBy(xpath = "//LABEL[@for='Paying a bill'][text()='Paying a bill']")
 	WebElement payingBill;
 
-	@FindBy(xpath = "//DIV[@class='container pagenav-container']")
+	@FindBy(xpath = "//button[@class='btn btn-pagenav btn-block']")
 	WebElement doneChoosing;
+
+	@FindBy(xpath = "//LABEL[@for='Need more time to pay'][text()='Need more time to pay']")
+	WebElement needMoreTime;
+
+	@FindBy(xpath = "//button[@class='btn btn-pagenav btn-block']")
+	WebElement doneChoosingOption;
 
 	private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
 	public void submitComplaint() {
 		wait.forElementToBeVisible(submitComplaint);
 		click(submitComplaint);
-	}
-
-	public void energyComplaint() {
 		wait.forElementToBeVisible(energyComplaint);
 		click(energyComplaint);
-	}
-
-	public void payingBill() {
 		wait.forElementToBeVisible(payingBill);
 		click(payingBill);
-	}
-
-	public void doneChoosing() {
 		wait.forElementToBeVisible(doneChoosing);
 		click(doneChoosing);
+		wait.forElementToBeVisible(needMoreTime);
+		click(needMoreTime);
+		wait.forElementToBeVisible(doneChoosing);
+		click(doneChoosingOption);
 	}
+
+
 
 }

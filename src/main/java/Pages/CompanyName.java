@@ -25,7 +25,7 @@ public class CompanyName extends BasePage {
 	@FindBy(xpath = "//div[@class='form-group single-org ']")
 	WebElement energyCompanyOption;
 
-	@FindBy(xpath = "//a[contains(text(),'Perth Energy')]")
+	@FindBy(xpath="//ul[@class='dropdown-menumylistolist-0']//*[@class='ui-menu-itemlisting']//*[@class='ui-all']")
 	WebElement companyNameSelect;
 
 	@FindBy(xpath = "//BUTTON[@class='btn btn-pagenav btn-block organisation-button']")
@@ -33,22 +33,22 @@ public class CompanyName extends BasePage {
 
 	    private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
-	    public void company() {
+	public void company() {
+		companyDetails("Perth Energy");
+	}
+	    public void companyDetails( String text) {
 			wait.forElementToBeVisible(company);
-	    	sendKeys(company, "Perth Energy");
-	    }
-	 	public void clickOnEnergyCompanyOption() {
-			wait.forElementToBeVisible(energyCompanyOption);
-	    	click(energyCompanyOption);
-	 	}
+	    	sendKeys(company, text);
 
-		public void companyName() {
-		wait.forElementToBeVisible(companyNameSelect);
-		click(companyNameSelect);
+	    }
+
+	    public void companyDetailsNeeded(){
+			wait.forElementToBeVisible(energyCompanyOption);
+			click(energyCompanyOption);
+			wait.forElementToBeVisible(companyNameSelect);
+			click(companyNameSelect);
+			wait.forElementToBeVisible(doneChoosing);
+			click(doneChoosing);
 		}
 
-		public void doneChoosing() {
-			wait.forElementToBeVisible(doneChoosing);
-	    	click(doneChoosing);
-	    }
 }

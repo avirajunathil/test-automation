@@ -20,12 +20,15 @@ public class EnergyComplaint extends BasePage {
 
 	@FindBy(xpath = "//i[@class='fa fa-lightbulb-o']")
     WebElement energyComplaint;
+
 	
 	    private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
 		public void energyComplaint() {
 			wait.forElementToBeVisible(energyComplaint);
 	    	click(energyComplaint);
+
+
 	    }
 		
 }

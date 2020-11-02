@@ -3,12 +3,13 @@ package commons;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public abstract class BasePage {
 
     protected WebDriver driver;
 
-    protected ExplicitWait wait;
+    protected static ExplicitWait wait;
 
     protected JavaScriptHelper js;
 
@@ -44,6 +45,22 @@ public abstract class BasePage {
 
     public void executeJavascript(String string, WebElement element) {
         js.executeScript(string, element);
+    }
+
+    public static void dropDownMethod(WebElement element, String option, String value)
+    {
+        Select s = new Select(element);
+        if(option.equalsIgnoreCase("Value")){
+            s.selectByValue(value);
+        }
+
+        else if(option.equalsIgnoreCase("VisibleText")){
+            s.selectByVisibleText(value);}
+
+            else if(option.equalsIgnoreCase("Index")){
+                int i = Integer.parseInt(value);
+                s.selectByIndex(i);
+            }
     }
 
 }

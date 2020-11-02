@@ -12,6 +12,11 @@ import org.openqa.selenium.support.ui.Select;
 
 import commons.BasePage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 public class Response extends BasePage {
 
 
@@ -46,42 +51,29 @@ public class Response extends BasePage {
 
 	    private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
-	    public void title() {
+	    public void title() throws IOException {
 			wait.forElementToBeVisible(title);
 	    	Select ab = new Select(title);
 	    	ab.selectByValue("Mr");
+			wait.forElementToBeVisible(firstName);
+			sendKeys(firstName, "Roshan");
+			wait.forElementToBeVisible(lastname);
+			sendKeys(lastname, "Singh");
+
+			wait.forElementToBeVisible(post);
+			click(post);
+			wait.forElementToBeVisible(option2);
+			click(option2);
+			wait.forElementToBeVisible(option3);
+			click(option3);
+			wait.forElementToBeVisible(doneChoosing);
+			click(doneChoosing);
 	    	
 	    }
-	    
-	    public void firstName() {
-			wait.forElementToBeVisible(firstName);
-	    	sendKeys(firstName, "Roshan");
-	    }
-	    public void lastname() {
-			wait.forElementToBeVisible(lastname);
-	    	sendKeys(lastname, "Singh");
-	    }
-
 		
 	    public void email(String username1) {
 			wait.forElementToBeVisible(email);
-	    	sendKeys(email, username1);
+			sendKeys(email, username1);
 	    }
-	    
-	    public void post() {
-			wait.forElementToBeVisible(post);
-	    	click(post);
-	    }
-	    public void option2() {
-			wait.forElementToBeVisible(option2);
-	    	click(option2);
-	    }
-	    public void option3() {
-			wait.forElementToBeVisible(option3);
-	    	click(option3);
-	    }
-	    public void doneChoosing() {
-			wait.forElementToBeVisible(doneChoosing);
-	    	click(doneChoosing);
-	    }
+
 }

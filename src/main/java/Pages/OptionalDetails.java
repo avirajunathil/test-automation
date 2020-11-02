@@ -1,13 +1,13 @@
 
 package Pages;
 
-import java.awt.*;
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,72 +15,58 @@ import org.openqa.selenium.support.ui.Select;
 
 
 import commons.BasePage;
-import org.testng.Assert;
 
 public class OptionalDetails extends BasePage {
 
-	 public OptionalDetails(WebDriver driver) {
+
+	public OptionalDetails(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
 	}
-  
+
 	@FindBy(css = "#outcome-field1")
-    WebElement resolution;
-	
+	WebElement resolution;
+
 	@FindBy(css = "#other-outcome1")
-    WebElement outcome1;
-	@FindBy(xpath = "//span[contains(text(),'CHOOSE FILE')]")
-    WebElement chooseFile;
-	
+	WebElement outcome1;
+	@FindBy(css = "div.layout:nth-child(2) div.page div.container-fluid div.row:nth-child(3) div.col-md-12:nth-child(4) div.document-attachments div.form-group:nth-child(3) div:nth-child(4) label:nth-child(1) > span.btn.btn-default.btn-file")
+	WebElement chooseFile;
+
 	@FindBy(css = "#btn-next")
-    WebElement doneChoosing;
+	WebElement doneChoosing;
 
-	    private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
+	private static final Logger lOGGER = LogManager.getLogger(HomePage.class.getName());
 
-	    public void resolution() {
-			wait.forElementToBeVisible(resolution);
-	    	Select ab = new Select(resolution);
-	    	ab.selectByValue("10");
-	    	
-	    }
-		
-		public void outcome1() {
-			wait.forElementToBeVisible(outcome1);
-	    	sendKeys(outcome1, "payment plan");
-	    }
-		
-		public void chooseFile() throws AWTException {
-			wait.forElementToBeVisible(chooseFile);
-	    	click(chooseFile);
-			String projectpath = System.getProperty("user.dir") + "\\simple.PNG";
+	public void resolution() {
+		wait.forPage();
+		Select ab = new Select(resolution);
+		ab.selectByValue("10");
+		wait.forPage();
+		sendKeys(outcome1, "payment plan");
+		wait.forPage();
+		click(doneChoosing);
 
-			Robot robot = new Robot();
-			robot.delay(2000);
-			StringSelection stringSelection = new StringSelection(projectpath);
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection,null);
+	}
+	public void chooseFile() throws AWTException {
+		wait.forPage();
+		click(chooseFile);
+		Robot robot = new Robot();
+		robot.setAutoDelay(2000);
+		StringSelection sc = new StringSelection("C:\\Users\\u39807\\Desktop\\aaaaaaaaaaa.PNG");
+		java.awt.Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sc, null);
+		robot.setAutoDelay(2000);
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.setAutoDelay(2000);
 
-			robot.setAutoDelay(1000);
-			robot.keyPress(KeyEvent.VK_CONTROL);
-			robot.keyPress(KeyEvent.VK_V);
-			robot.keyRelease(KeyEvent.VK_CONTROL);
-			robot.keyRelease(KeyEvent.VK_V);
-			robot.setAutoDelay(1000);
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		robot.setAutoDelay(5000);
+
+	}
 
 
-			if(driver.findElement(By.xpath("//SPAN[@class='file-name'][text()='simple.PNG']")).isDisplayed())
-			{
-				Assert.assertTrue(true, "Profile picture is Uploaded");
-			}
-			else {
-				Assert.assertTrue(false, "Profile picture not Uploaded");
-			}
-			}
 
-		
-		public void doneChoosing() {
-			wait.forElementToBeVisible(doneChoosing);
-	    	click(doneChoosing);
-	    }
 }

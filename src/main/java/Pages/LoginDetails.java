@@ -11,7 +11,7 @@ import commons.BasePage;
 public class LoginDetails extends BasePage{
 
 
-	 @FindBy(xpath = "//input[@id='register-email']")
+		@FindBy(xpath = "//input[@id='register-email']")
 	    WebElement username;
 	    
 	    @FindBy(xpath = "//input[@id='register-password']")
