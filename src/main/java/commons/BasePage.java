@@ -11,7 +11,7 @@ public abstract class BasePage {
 
     protected static ExplicitWait wait;
 
-    protected JavaScriptHelper js;
+    protected static JavaScriptHelper js;
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;
@@ -24,12 +24,12 @@ public abstract class BasePage {
         click(webElement, Timeouts.EXPLICIT);
     }
 
-    public void click(WebElement webElement, int timeOutInSeconds) {
+    public static void click(WebElement webElement, int timeOutInSeconds) {
         wait.forElementToBeClickable(webElement, timeOutInSeconds, Timeouts.POLLING_INTERVAL);
         js.clickElement(webElement);
     }
 
-    public void sendKeys(WebElement webElement, String value, int timeOutInSeconds) {
+    public static void sendKeys(WebElement webElement, String value, int timeOutInSeconds) {
         click(webElement, timeOutInSeconds);
         webElement.clear();
         webElement.sendKeys(value);
